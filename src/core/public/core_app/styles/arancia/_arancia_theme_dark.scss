@@ -1,0 +1,76 @@
+// Arancia design system theme (dark)
+// Loaded via core_app/styles/_globals_*.scss so it is applied globally.
+
+// ----- Design tokens (CSS variables) -----
+// Keep these semantic: components should consume these, not raw hex values.
+:root {
+  /* Typography */
+  --ar-font-family-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ar-font-family-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Radii */
+  --ar-radius-md: 8px;
+
+  /* Spacing scale */
+  --ar-space-1: 4px;
+  --ar-space-2: 8px;
+  --ar-space-3: 12px;
+  --ar-space-4: 16px;
+  --ar-space-5: 24px;
+  --ar-space-6: 32px;
+
+  /* Surfaces */
+  --ar-surface-app: #0b0f14;
+  --ar-surface-1: #111827;
+  --ar-surface-2: #172033;
+
+  /* Borders */
+  --ar-border-subtle: #243044;
+
+  /* Text */
+  --ar-text-primary: #ffffff;
+  --ar-text-secondary: rgba(255, 255, 255, 0.72);
+  --ar-text-tertiary: rgba(255, 255, 255, 0.44);
+
+  /* Brand / accent */
+  --ar-accent-primary: #bd401d;
+  --ar-accent-primary-hover: #d24a25;
+  --ar-accent-primary-active: #7c0100;
+
+  /* Links / focus */
+  --ar-accent-link: #2dd4ff;
+  --ar-accent-link-hover: #67e8f9;
+  --ar-focus: #2dd4ff;
+
+  /* Status */
+  --ar-success: #22c55e;
+  --ar-warning: #f59e0b;
+  // Dedicated danger tone (darker, more "alert" than the brand red/orange).
+  --ar-danger: #9f1239;
+}
+
+// ----- EUI Sass variable overrides -----
+// These must be applied AFTER EUI color variable imports and BEFORE EUI globals,
+// so that generated EUI CSS uses the Arancia values.
+$euiColorPrimary: #bd401d;
+$euiColorAccent: #2dd4ff;
+$euiColorDanger: #9f1239;
+$euiColorWarning: #f59e0b;
+$euiColorSuccess: #22c55e;
+
+// Base surfaces / text
+$euiColorEmptyShade: #0b0f14;
+$euiColorLightestShade: #111827;
+$euiColorLightShade: #172033;
+$euiBorderColor: #243044;
+$euiTextColor: #ffffff;
+$euiTextSubduedColor: rgba(255, 255, 255, 0.72);
+
+// Focus
+$euiFocusRingColor: #2dd4ff;
+
+// Shape / type
+$euiBorderRadius: 8px;
+$euiFontFamily: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+$euiFontWeightBold: 700;
+

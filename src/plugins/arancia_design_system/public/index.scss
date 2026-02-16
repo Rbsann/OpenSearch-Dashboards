@@ -1,0 +1,540 @@
+// Arancia design system component styles.
+//
+// Note: global theme tokens live in core (core_app/styles/arancia/*) and are loaded
+// via the global theme entrypoints. These component styles consume those tokens.
+
+.aranciaDs {
+  font-family: var(--ar-font-family-body);
+  color: var(--ar-text-primary);
+}
+
+// ----- Button -----
+.arButton {
+  border-radius: var(--ar-radius-md);
+}
+
+.arButton:not(:disabled),
+.arButton[href] {
+  cursor: pointer;
+}
+
+.arButton:disabled {
+  cursor: not-allowed;
+}
+
+.arButton.euiButton,
+.arButton.euiButtonEmpty {
+  min-height: 40px;
+}
+
+.arButton.euiButton--small,
+.arButton.euiButtonEmpty--small {
+  min-height: 32px;
+}
+
+.arButton .euiButtonContent {
+  align-items: center;
+  display:flex;
+  gap: 2px;
+}
+
+.arButton .euiButtonContent__icon {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.arButton .euiButtonContent__icon > * {
+  display: block;
+}
+
+.arButton .euiButtonContent__text {
+  line-height: 1;
+}
+
+.arButton--cta .euiButtonContent {
+  display: flex;
+  gap: 10px;
+}
+
+// Disabled: keep colors as-is but reduce opacity to avoid weird color mixing.
+.arButton.euiButton:disabled,
+.arButton.euiButton[disabled],
+.arButton.euiButtonEmpty:disabled,
+.arButton.euiButtonEmpty[disabled] {
+  opacity: 0.75;
+  box-shadow: none;
+  transform: none;
+}
+
+.arButton--cta {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+// Ensure our brand tone is consistently applied even if EUI defaults change.
+.arButton--brand,
+.arIconButton--brand {
+  --ar-private-accent: var(--ar-accent-primary);
+}
+
+.arButton--brand.euiButton {
+  background-color: var(--ar-accent-primary);
+  border-color: var(--ar-accent-primary);
+  color: var(--ar-text-on-accent, #fff);
+
+  &:hover {
+    background-color: var(--ar-accent-primary-hover);
+    border-color: var(--ar-accent-primary-hover);
+  }
+
+  &:active {
+    background-color: var(--ar-accent-primary-active);
+    border-color: var(--ar-accent-primary-active);
+  }
+}
+
+.arButton--secondary.euiButton {
+  background-color: var(--ar-surface-2);
+  border: 1px solid var(--ar-border-subtle);
+  color: var(--ar-text-primary);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--ar-border-subtle), var(--ar-accent-link) 35%);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.28);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+  }
+}
+
+// ----- Icon button -----
+.arIconButton.euiButtonIcon {
+  --ar-icon-btn-bg: transparent;
+  --ar-icon-btn-border: transparent;
+  --ar-icon-btn-fg: var(--ar-text-secondary);
+  --ar-icon-btn-bg-hover: color-mix(in srgb, var(--ar-surface-2), var(--ar-accent-link) 10%);
+  --ar-icon-btn-bg-active: color-mix(in srgb, var(--ar-surface-2), var(--ar-accent-link) 16%);
+
+  border-radius: var(--ar-radius-md);
+  background: var(--ar-icon-btn-bg);
+  border: 1px solid var(--ar-icon-btn-border);
+  color: var(--ar-icon-btn-fg);
+  box-shadow: none;
+  text-decoration: none;
+  transition: background-color 120ms ease, box-shadow 120ms ease, transform 120ms ease, color 120ms ease,
+    border-color 120ms ease;
+}
+
+.arIconButton.euiButtonIcon:not(:disabled) {
+  cursor: pointer;
+}
+
+.arIconButton.euiButtonIcon:hover:not(:disabled),
+.arIconButton.euiButtonIcon:focus:not(:disabled) {
+  text-decoration: none;
+  background: var(--ar-icon-btn-bg-hover);
+  border-color: color-mix(in srgb, var(--ar-border-subtle), var(--ar-accent-link) 35%);
+}
+
+.arIconButton.euiButtonIcon:active:not(:disabled) {
+  transform: translateY(0.5px);
+  background: var(--ar-icon-btn-bg-active);
+}
+
+.arIconButton.euiButtonIcon:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ar-focus), transparent 60%),
+    inset 0 0 0 1px color-mix(in srgb, var(--ar-border-subtle), var(--ar-focus) 45%);
+}
+
+.arIconButton.euiButtonIcon:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.arIconButton--brand.euiButtonIcon {
+  // Brand icon button should feel "toolbar", not a solid marketing pill.
+  --ar-icon-btn-bg: transparent;
+  --ar-icon-btn-border: transparent;
+  --ar-icon-btn-fg: var(--ar-accent-primary);
+  --ar-icon-btn-bg-hover: color-mix(in srgb, var(--ar-accent-primary) 14%, var(--ar-surface-2));
+  --ar-icon-btn-bg-active: color-mix(in srgb, var(--ar-accent-primary) 22%, var(--ar-surface-2));
+}
+
+.arIconButton--danger.euiButtonIcon {
+  --ar-icon-btn-bg: transparent;
+  --ar-icon-btn-border: transparent;
+  --ar-icon-btn-fg: var(--ar-danger);
+  --ar-icon-btn-bg-hover: color-mix(in srgb, var(--ar-danger) 14%, var(--ar-surface-2));
+  --ar-icon-btn-bg-active: color-mix(in srgb, var(--ar-danger) 22%, var(--ar-surface-2));
+}
+
+// ----- Card / panel surfaces -----
+.arPanel {
+  border-radius: var(--ar-radius-md);
+  border: 1px solid var(--ar-border-subtle);
+  background: var(--ar-surface-1);
+}
+
+.arCard {
+  border-radius: var(--ar-radius-md);
+  border: 1px solid var(--ar-border-subtle);
+  background: var(--ar-surface-2);
+  position: relative;
+  text-align: left;
+}
+
+.arCard {
+  // keep a bit of inner depth in dark mode
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12) inset;
+}
+
+.arCard__title {
+  margin: 0;
+  font-family: var(--ar-font-family-display);
+  color: var(--ar-text-primary);
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1.2;
+}
+
+.arCard__description {
+  margin: 6px 0 0;
+  color: var(--ar-text-secondary);
+  line-height: 1.35;
+}
+
+.arCard__icon {
+  display: flex;
+  align-items: flex-start;
+}
+
+.arCard__iconInner {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid var(--ar-border-subtle);
+  background: color-mix(in srgb, var(--ar-surface-1), transparent 35%);
+  color: var(--ar-accent-link);
+}
+
+.arCard__iconInner .euiIcon,
+.arCard__iconInner svg {
+  width: 20px;
+  height: 20px;
+}
+
+.arCard__iconInner svg {
+  fill: currentColor;
+}
+
+// When the whole card is a link, we use a transparent overlay anchor INSIDE the panel
+// so that :focus-within works and our hover/focus styles apply to the panel.
+.arCard__overlayLink {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: var(--ar-radius-md);
+  text-decoration: none;
+  z-index: 1;
+}
+
+.arCard__overlayLink,
+.arCard--interactive {
+  cursor: pointer;
+}
+
+.arCard__overlayLink:focus-visible {
+  outline: none;
+}
+
+.arCard--interactive {
+  transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+  // Slight affordance even before hover so it doesn't feel identical to static cards.
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--ar-border-subtle), var(--ar-accent-link) 35%);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ar-focus), transparent 60%);
+  }
+}
+
+// ----- Form controls -----
+// EUI CSS is not guaranteed to be present in Storybook, so these need to be fully styled.
+.arFormRow.euiFormRow,
+.arFormRow {
+  max-width: 100%;
+}
+
+.arFormRow .euiFormRow__labelWrapper {
+  margin-bottom: 6px;
+}
+
+.arFormRow .euiFormLabel {
+  font-family: var(--ar-font-family-body);
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--ar-text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.arFormRow .euiFormHelpText {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ar-text-tertiary);
+}
+
+.arFormRow .euiFormErrorText {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ar-danger);
+}
+
+.arTextInput,
+.arSelect {
+  width: 100%;
+  height: 40px;
+  padding: 10px 12px;
+  border-radius: var(--ar-radius-md);
+  border: 1px solid var(--ar-border-subtle);
+  background: var(--ar-surface-2);
+  color: var(--ar-text-primary);
+  font-family: var(--ar-font-family-body);
+  font-size: 14px;
+  line-height: 20px;
+  box-shadow: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.arTextInput::placeholder,
+.arSelect::placeholder {
+  color: var(--ar-text-tertiary);
+  opacity: 1;
+}
+
+.arTextInput:hover,
+.arSelect:hover {
+  border-color: color-mix(in srgb, var(--ar-border-subtle), var(--ar-accent-link) 35%);
+}
+
+.arTextInput:focus,
+.arSelect:focus {
+  outline: none;
+  background: var(--ar-surface-1);
+  border-color: var(--ar-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ar-focus), transparent 60%);
+}
+
+.arTextInput[aria-invalid='true'],
+.arSelect[aria-invalid='true'],
+.arTextInput.euiFieldText-isInvalid,
+.arSelect.euiSelect-isInvalid {
+  border-color: var(--ar-danger);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ar-danger), transparent 75%);
+}
+
+.arTextInput:disabled,
+.arSelect:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  background: var(--ar-surface-1);
+}
+
+.arSwitch.euiSwitch,
+.arSwitch {
+  display: inline-flex;
+  align-items: center;
+}
+
+.arSwitch .euiSwitch__button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.arSwitch .euiSwitch__label {
+  padding-left: 10px;
+  line-height: 22px;
+  color: var(--ar-text-secondary);
+}
+
+// Fully style the toggle so it looks good even without EUI's theme CSS present.
+.arSwitch .euiSwitch__body {
+  --ar-switch-w: 44px;
+  --ar-switch-h: 24px;
+  --ar-switch-pad: 2px;
+  --ar-switch-thumb: 20px;
+  --ar-switch-shift: calc(var(--ar-switch-w) - var(--ar-switch-thumb) - (var(--ar-switch-pad) * 2));
+
+  width: var(--ar-switch-w);
+  height: var(--ar-switch-h);
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ar-surface-2) 90%, var(--ar-surface-1));
+  box-shadow: inset 0 0 0 1px var(--ar-border-subtle);
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.arSwitch .euiSwitch__thumb {
+  position: absolute;
+  top: var(--ar-switch-pad);
+  left: var(--ar-switch-pad);
+  width: var(--ar-switch-thumb);
+  height: var(--ar-switch-thumb);
+  padding: 0;
+  border-radius: 999px;
+  background: var(--ar-surface-1);
+  border: 1px solid color-mix(in srgb, var(--ar-border-subtle), #000 20%);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+  transform: translateX(0);
+  transition: transform 180ms cubic-bezier(0.2, 0.9, 0.2, 1), background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.arSwitch .euiSwitch__track {
+  display: none;
+}
+
+.arSwitch .euiSwitch__icon {
+  display: none;
+}
+
+.arSwitch .euiSwitch__button[aria-checked='true'] .euiSwitch__body {
+  background: color-mix(in srgb, var(--ar-accent-primary) 55%, var(--ar-surface-2));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ar-accent-primary) 55%, var(--ar-border-subtle));
+}
+
+.arSwitch .euiSwitch__button[aria-checked='true'] .euiSwitch__thumb {
+  transform: translateX(var(--ar-switch-shift));
+  border-color: color-mix(in srgb, var(--ar-accent-primary) 55%, var(--ar-border-subtle));
+}
+
+.arSwitch .euiSwitch__button:focus-visible .euiSwitch__body {
+  box-shadow: inset 0 0 0 1px var(--ar-border-subtle),
+    0 0 0 3px color-mix(in srgb, var(--ar-focus), transparent 60%);
+}
+
+.arSwitch .euiSwitch__button:disabled,
+.arSwitch .euiSwitch__button:disabled ~ .euiSwitch__label {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+// ----- Callout -----
+.arCallout {
+  border-radius: var(--ar-radius-md);
+}
+
+.arCallout {
+  // Default accent (info)
+  --ar-callout-accent: var(--ar-accent-link);
+}
+
+.arCallout.euiCallOut {
+  position: relative;
+  padding: var(--ar-space-4);
+  border: 1px solid var(--ar-border-subtle);
+  background: var(--ar-surface-1);
+  overflow: hidden;
+}
+
+.arCallout.euiCallOut::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--ar-callout-accent);
+}
+
+.arCallout--neutral {
+  --ar-callout-accent: var(--ar-border-subtle);
+}
+
+.arCallout--brand {
+  --ar-callout-accent: var(--ar-accent-primary);
+}
+
+.arCallout--info {
+  --ar-callout-accent: var(--ar-accent-link);
+}
+
+.arCallout--success {
+  --ar-callout-accent: var(--ar-success);
+}
+
+.arCallout--warning {
+  --ar-callout-accent: var(--ar-warning);
+}
+
+.arCallout--danger {
+  --ar-callout-accent: var(--ar-danger);
+}
+
+.arCallout--neutral.euiCallOut::before {
+  width: 0;
+}
+
+.arCallout .euiCallOutHeader {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ar-space-2);
+}
+
+.arCallout .euiCallOutHeader__icon {
+  flex: 0 0 auto;
+  transform: translateY(2px);
+  fill: var(--ar-callout-accent);
+}
+
+.arCallout .euiCallOutHeader__title {
+  font-family: var(--ar-font-family-body);
+  color: var(--ar-callout-accent);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.arCallout .euiCallOut__closeIcon {
+  fill: var(--ar-callout-accent);
+}
+
+.arCallout .euiCallOutHeader + * {
+  margin-top: var(--ar-space-2);
+}
+
+.arCallout__body {
+  color: var(--ar-text-secondary);
+}
+
+.arCallout__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ar-space-3);
+}
+
+.arCallout__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ar-space-2);
+}
+
+

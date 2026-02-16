@@ -1,0 +1,69 @@
+// Arancia design system theme (light)
+// Loaded via core_app/styles/_globals_*.scss so it is applied globally.
+
+:root {
+  /* Typography */
+  --ar-font-family-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ar-font-family-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Radii */
+  --ar-radius-md: 8px;
+
+  /* Spacing scale */
+  --ar-space-1: 4px;
+  --ar-space-2: 8px;
+  --ar-space-3: 12px;
+  --ar-space-4: 16px;
+  --ar-space-5: 24px;
+  --ar-space-6: 32px;
+
+  /* Surfaces */
+  --ar-surface-app: #ffffff;
+  --ar-surface-1: #f7f8fa;
+  --ar-surface-2: #ffffff;
+
+  /* Borders */
+  --ar-border-subtle: #d6d9df;
+
+  /* Text */
+  --ar-text-primary: #0b0f14;
+  --ar-text-secondary: #565a61;
+  --ar-text-tertiary: rgba(11, 15, 20, 0.6);
+
+  /* Brand / accent */
+  --ar-accent-primary: #bd401d;
+  --ar-accent-primary-hover: #a93618;
+  --ar-accent-primary-active: #7c0100;
+
+  /* Links / focus */
+  --ar-accent-link: #0891b2;
+  --ar-accent-link-hover: #0ea5c6;
+  --ar-focus: #0891b2;
+
+  /* Status */
+  --ar-success: #16a34a;
+  --ar-warning: #d97706;
+  // Dedicated danger tone (darker, more "alert" than the brand red/orange).
+  --ar-danger: #9f1239;
+}
+
+// EUI Sass variable overrides (light)
+$euiColorPrimary: #bd401d;
+$euiColorAccent: #0891b2;
+$euiColorDanger: #9f1239;
+$euiColorWarning: #d97706;
+$euiColorSuccess: #16a34a;
+
+$euiColorEmptyShade: #ffffff;
+$euiColorLightestShade: #f7f8fa;
+$euiColorLightShade: #ffffff;
+$euiBorderColor: #d6d9df;
+$euiTextColor: #0b0f14;
+$euiTextSubduedColor: #565a61;
+
+$euiFocusRingColor: #0891b2;
+
+$euiBorderRadius: 8px;
+$euiFontFamily: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+$euiFontWeightBold: 700;
+
