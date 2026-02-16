@@ -5,5 +5,5 @@
   "ui": true,
   "requiredPlugins": ["management","navigation", "contentManagement"],
   "optionalPlugins": ["home"],
-  "requiredBundles": ["opensearchDashboardsReact", "home"]
+  "requiredBundles": ["opensearchDashboardsReact", "home", "aranciaDesignSystem"]
 }

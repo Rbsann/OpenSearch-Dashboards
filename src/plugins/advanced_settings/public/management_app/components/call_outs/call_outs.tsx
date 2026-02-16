@@ -30,20 +30,20 @@
 
 import React from 'react';
 
-import { EuiCallOut } from '@elastic/eui';
 import { FormattedMessage } from '@osd/i18n/react';
+import { AranciaCallout } from '../../../../../arancia_design_system/public';
 
 export const CallOuts = () => {
   return (
     <div>
-      <EuiCallOut
+      <AranciaCallout
         title={
           <FormattedMessage
             id="advancedSettings.callOutCautionTitle"
             defaultMessage="Caution: You can break stuff here"
           />
         }
-        color="warning"
+        tone="warning"
         iconType="bolt"
       >
         <p>
@@ -57,7 +57,7 @@ export const CallOuts = () => {
             Deleting a custom setting will permanently remove it from OpenSearch Dashboards's config."
           />
         </p>
-      </EuiCallOut>
+      </AranciaCallout>
     </div>
   );
 };

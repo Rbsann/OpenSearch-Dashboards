@@ -6,8 +6,6 @@
 import React, { FC, useState, useMemo } from 'react';
 import { i18n } from '@osd/i18n';
 import {
-  EuiPanel,
-  EuiButtonIcon,
   EuiTitle,
   EuiFlexGroup,
   EuiFlexItem,
@@ -15,6 +13,7 @@ import {
   EuiLink,
   EuiText,
 } from '@elastic/eui';
+import { AranciaIconButton, AranciaPanel } from '../../../../../arancia_design_system/public';
 import { RenderFn, Section as SectionType } from '../../../services/section_type/section_type';
 import { LazyRender } from './lazy_render';
 
@@ -59,21 +58,25 @@ export const Section: FC<Props> = ({ render, title, description, links }) => {
   );
 
   return (
-    <EuiPanel
-      hasBorder={false}
+    <AranciaPanel
+      paddingSize="m"
       hasShadow={false}
-      color="transparent"
+      className="homeAranciaSection"
       data-test-subj="homepageSection"
     >
-      <EuiFlexGroup direction="row" alignItems="center" gutterSize="s" responsive={false}>
+      <EuiFlexGroup
+        direction="row"
+        alignItems="center"
+        gutterSize="s"
+        responsive={false}
+        className="homeAranciaSection__header"
+      >
         <EuiFlexItem grow={false}>
-          <EuiButtonIcon
+          <AranciaIconButton
             iconType={isExpanded ? 'arrowDown' : 'arrowRight'}
             onClick={toggleExpanded}
             size="s"
-            iconSize="m"
-            color="text"
-            aria-label={
+            ariaLabel={
               isExpanded
                 ? i18n.translate('home.section.collapse', { defaultMessage: 'Collapse section' })
                 : i18n.translate('home.section.expand', { defaultMessage: 'Expand section' })
@@ -82,11 +85,11 @@ export const Section: FC<Props> = ({ render, title, description, links }) => {
         </EuiFlexItem>
         <EuiFlexItem grow>
           <EuiTitle size="m">
-            <h2>{title}</h2>
+            <h2 className="homeAranciaSection__title">{title}</h2>
           </EuiTitle>
         </EuiFlexItem>
       </EuiFlexGroup>
       {isExpanded && memoizedContent}
-    </EuiPanel>
+    </AranciaPanel>
   );
 };

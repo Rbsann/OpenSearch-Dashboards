@@ -33,7 +33,7 @@
 }
 
 .homSolutions__content {
-  min-height: $euiSize * 16;
+  min-height: $euiSize * 18;
 
   @include euiBreakpoint("xs", "s") {
     flex-direction: column;
@@ -55,6 +55,7 @@
   color: inherit;
   flex: 1;
   transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+  text-decoration: none;
 
   &:hover,
   &:focus {
@@ -83,8 +84,38 @@
   padding: $euiSize;
 }
 
+.homSolutionPanel--opensearchDashboards .homSolutionPanel__header {
+  // Make the "Visualize & analyze" tile unmistakably Arancia.
+  background: linear-gradient(
+    135deg,
+    var(--ar-accent-primary) 0%,
+    var(--ar-accent-primary-hover) 55%,
+    var(--ar-accent-primary-active) 100%
+  );
+  color: var(--ar-text-on-accent, #fff);
+  padding: $euiSizeL;
+}
+
+.homSolutionPanel--opensearchDashboards .homSolutionPanel__title,
+.homSolutionPanel--opensearchDashboards .homSolutionPanel__subtitle {
+  color: var(--ar-text-on-accent, #fff);
+}
+
+.homSolutionPanel--opensearchDashboards .homSolutionPanel__inner {
+  min-height: $euiSize * 22;
+}
+
+.homSolutionPanel--opensearchDashboards .homSolutionPanel__content {
+  padding: $euiSizeL;
+}
+
+.homSolutionPanel--opensearchDashboards .homSolutionPanel__subtitle .euiIcon {
+  fill: currentColor;
+}
+
 .homSolutionPanel__icon {
-  background-color: $euiColorEmptyShade !important;
+  // Token icon should feel "light" on the brand header, without a harsh white square.
+  background-color: rgba(255, 255, 255, 0.16) !important;
   box-shadow: none !important;
   margin: 0 auto $euiSizeS;
   padding: $euiSizeS;

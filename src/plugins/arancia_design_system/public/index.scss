@@ -375,15 +375,17 @@
 }
 
 // Fully style the toggle so it looks good even without EUI's theme CSS present.
-.arSwitch .euiSwitch__body {
+.arSwitch.euiSwitch .euiSwitch__body {
   --ar-switch-w: 44px;
   --ar-switch-h: 24px;
   --ar-switch-pad: 2px;
   --ar-switch-thumb: 20px;
   --ar-switch-shift: calc(var(--ar-switch-w) - var(--ar-switch-thumb) - (var(--ar-switch-pad) * 2));
 
-  width: var(--ar-switch-w);
-  height: var(--ar-switch-h);
+  // EUI sets smaller dimensions for `.euiSwitch--compressed` with higher specificity.
+  // We intentionally keep Arancia toggles at a consistent, comfortable size.
+  width: var(--ar-switch-w) !important;
+  height: var(--ar-switch-h) !important;
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -393,7 +395,7 @@
   transition: background-color 150ms ease, box-shadow 150ms ease;
 }
 
-.arSwitch .euiSwitch__thumb {
+.arSwitch.euiSwitch .euiSwitch__thumb {
   position: absolute;
   top: var(--ar-switch-pad);
   left: var(--ar-switch-pad);
@@ -409,25 +411,25 @@
     border-color 150ms ease;
 }
 
-.arSwitch .euiSwitch__track {
+.arSwitch.euiSwitch .euiSwitch__track {
   display: none;
 }
 
-.arSwitch .euiSwitch__icon {
+.arSwitch.euiSwitch .euiSwitch__icon {
   display: none;
 }
 
-.arSwitch .euiSwitch__button[aria-checked='true'] .euiSwitch__body {
+.arSwitch.euiSwitch .euiSwitch__button[aria-checked='true'] .euiSwitch__body {
   background: color-mix(in srgb, var(--ar-accent-primary) 55%, var(--ar-surface-2));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ar-accent-primary) 55%, var(--ar-border-subtle));
 }
 
-.arSwitch .euiSwitch__button[aria-checked='true'] .euiSwitch__thumb {
+.arSwitch.euiSwitch .euiSwitch__button[aria-checked='true'] .euiSwitch__thumb {
   transform: translateX(var(--ar-switch-shift));
   border-color: color-mix(in srgb, var(--ar-accent-primary) 55%, var(--ar-border-subtle));
 }
 
-.arSwitch .euiSwitch__button:focus-visible .euiSwitch__body {
+.arSwitch.euiSwitch .euiSwitch__button:focus-visible .euiSwitch__body {
   box-shadow: inset 0 0 0 1px var(--ar-border-subtle),
     0 0 0 3px color-mix(in srgb, var(--ar-focus), transparent 60%);
 }

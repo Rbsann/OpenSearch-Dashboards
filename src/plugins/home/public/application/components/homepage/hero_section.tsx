@@ -4,7 +4,7 @@
  */
 
 import React, { FC } from 'react';
-import { EuiPanel } from '@elastic/eui';
+import { AranciaPanel } from '../../../../../arancia_design_system/public';
 import { RenderFn } from '../../../services/section_type/section_type';
 import { LazyRender } from './lazy_render';
 
@@ -14,8 +14,8 @@ interface Props {
 
 export const HeroSection: FC<Props> = ({ render }) => {
   return (
-    <EuiPanel data-test-subj="homepageHeroSection">
+    <AranciaPanel data-test-subj="homepageHeroSection" hasShadow={false} className="homeAranciaHero">
       <LazyRender render={render} />
-    </EuiPanel>
+    </AranciaPanel>
   );
 };

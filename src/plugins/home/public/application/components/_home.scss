@@ -29,7 +29,7 @@
  */
 
 .homWrapper {
-  background-color: $euiColorEmptyShade;
+  background-color: var(--ar-surface-app);
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - #{$osdHeaderOffset});
@@ -39,11 +39,116 @@
   }
 }
 
+.isHomPage .osdOverviewPageHeader {
+  background-color: var(--ar-surface-app);
+  border-bottom: 1px solid var(--ar-border-subtle);
+}
+
+.isHomPage .osdOverviewPageHeader__inner h1 {
+  font-family: var(--ar-font-family-display);
+  letter-spacing: -0.02em;
+}
+
+// EuiButtonEmpty is a nested structure: the outer <a> is mostly a wrapper and the
+// inner `.euiButtonEmpty__content` is what carries padding. If we style BOTH, it
+// looks like a "double button". So: style the inner pill only.
+body.isHomPage .osdOverviewPageHeader__actionButton {
+  display: inline-flex !important;
+  align-items: center;
+  background: transparent !important;
+  border-color: transparent !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+}
+
+body.isHomPage .osdOverviewPageHeader__actionButton .euiButtonEmpty__content {
+  border-radius: var(--ar-radius-md) !important;
+  border: 1px solid var(--ar-accent-primary) !important;
+  background: var(--ar-accent-primary) !important;
+  padding: 8px 12px !important;
+  color: var(--ar-text-on-accent, #fff) !important;
+}
+
+body.isHomPage .osdOverviewPageHeader__actionButton .euiButtonContent__icon {
+  margin-inline-end: 8px;
+}
+
+body.isHomPage .osdOverviewPageHeader__actionButton .euiButtonEmpty__text {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+body.isHomPage .osdOverviewPageHeader__actionButton:hover,
+body.isHomPage .osdOverviewPageHeader__actionButton:focus,
+body.isHomPage .osdOverviewPageHeader__actionButton:hover .euiButtonEmpty__content,
+body.isHomPage .osdOverviewPageHeader__actionButton:focus .euiButtonEmpty__content {
+  background: var(--ar-accent-primary-hover) !important;
+  border-color: var(--ar-accent-primary-hover) !important;
+}
+
+body.isHomPage .osdOverviewPageHeader__actionButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ar-focus), transparent 60%);
+}
+
+.isHomPage .osdOverviewPageHeader__actionButton svg {
+  // ensure icon inherits text color
+  fill: currentColor;
+}
+
 .homContent {
   margin: 0 auto;
   max-width: 1200px;
   padding: $euiSizeXL $euiSize;
   width: 100%;
+}
+
+.homContent .euiHorizontalRule {
+  border-color: var(--ar-border-subtle);
+}
+
+// Give the "Ingest" + "Manage" sections a clear Arancia surface.
+.homAranciaSectionPanel {
+  background: var(--ar-surface-1);
+  border: 1px solid var(--ar-border-subtle);
+  border-radius: var(--ar-radius-md);
+}
+
+.homAranciaSectionPanel + .homAranciaSectionPanel {
+  margin-top: $euiSizeL;
+}
+
+// Footer buttons (same idea as the header actions)
+.isHomPage .osdOverviewPageFooter {
+  border-top: 1px solid var(--ar-border-subtle);
+  padding-top: $euiSizeM;
+}
+
+body.isHomPage .osdOverviewPageFooter__button {
+  background: transparent !important;
+  border-color: transparent !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+}
+
+body.isHomPage .osdOverviewPageFooter__button .euiButtonEmpty__content {
+  border-radius: var(--ar-radius-md) !important;
+  // Footer actions are utility links - keep them secondary instead of brand-filled.
+  border: 1px solid var(--ar-border-subtle) !important;
+  background: var(--ar-surface-2) !important;
+  padding: 10px 14px !important;
+  min-height: 36px !important;
+  color: var(--ar-text-primary) !important;
+}
+
+body.isHomPage .osdOverviewPageFooter__button:hover,
+body.isHomPage .osdOverviewPageFooter__button:focus,
+body.isHomPage .osdOverviewPageFooter__button:hover .euiButtonEmpty__content,
+body.isHomPage .osdOverviewPageFooter__button:focus .euiButtonEmpty__content {
+  background: color-mix(in srgb, var(--ar-surface-2), var(--ar-accent-link) 10%) !important;
+  border-color: color-mix(in srgb, var(--ar-border-subtle), var(--ar-accent-link) 35%) !important;
 }
 
 .homData--expanded {

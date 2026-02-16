@@ -16,7 +16,7 @@ import {
   EuiLoadingSpinner,
   EuiIcon,
 } from '@elastic/eui';
-import { AranciaButton } from '../../../../../arancia_design_system/public';
+import { AranciaButton, AranciaCallout } from '../../../../../arancia_design_system/public';
 import {
   HeroSection as HeroSectionType,
   Section as SectionType,
@@ -107,6 +107,7 @@ const useShowWelcome = () => {
 const Content = () => {
   const { heroes, sections, error, isLoading: isHomepageLoading } = useHomepage();
   const {
+    application: { getUrlForApp },
     chrome: { logos },
     getBasePath,
     injectedMetadata: { getBranding },
@@ -195,6 +196,50 @@ const Content = () => {
 
   return (
     <>
+      <div className="homeAranciaBanner">
+        <AranciaCallout
+          tone="brand"
+          title={
+            <FormattedMessage
+              id="home.arancia.banner.title"
+              defaultMessage="Welcome back — what do you want to do next?"
+            />
+          }
+          actions={
+            <>
+              <AranciaButton
+                variant="cta"
+                size="s"
+                iconType="indexOpen"
+                href={getUrlForApp('home', { path: '#/tutorial_directory' })}
+              >
+                <FormattedMessage id="home.addData" defaultMessage="Add data" />
+              </AranciaButton>
+              <AranciaButton
+                variant="secondary"
+                size="s"
+                iconType="dashboardApp"
+                href={getUrlForApp('dashboards')}
+              >
+                <FormattedMessage id="home.arancia.banner.dashboards" defaultMessage="Dashboards" />
+              </AranciaButton>
+              <AranciaButton
+                variant="secondary"
+                size="s"
+                iconType="discoverApp"
+                href={getUrlForApp('discover')}
+              >
+                <FormattedMessage id="home.arancia.banner.discover" defaultMessage="Discover" />
+              </AranciaButton>
+            </>
+          }
+        >
+          <FormattedMessage
+            id="home.arancia.banner.body"
+            defaultMessage="Shortcuts to the most common workflows — designed to be fast, accessible, and consistent."
+          />
+        </AranciaCallout>
+      </div>
       {hero && <HeroSection render={hero.render} />}
       {sections?.map(({ render, title, description, links }, i) => (
         <Section key={i} title={title} description={description} links={links} render={render} />

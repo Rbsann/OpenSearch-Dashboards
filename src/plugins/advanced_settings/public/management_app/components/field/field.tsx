@@ -43,7 +43,6 @@ import {
   EuiCodeEditor,
   EuiDescribedFormGroup,
   EuiCompressedFieldNumber,
-  EuiCompressedFieldText,
   EuiCompressedFilePicker,
   EuiCompressedFormRow,
   EuiIconTip,
@@ -51,13 +50,16 @@ import {
   EuiLink,
   EuiSpacer,
   EuiText,
-  EuiCompressedSelect,
-  EuiCompressedSwitch,
   EuiSwitchEvent,
   EuiToolTip,
 } from '@elastic/eui';
 import { i18n } from '@osd/i18n';
 import { FormattedMessage } from '@osd/i18n/react';
+import {
+  AranciaSelect,
+  AranciaSwitch,
+  AranciaTextInput,
+} from '../../../../../arancia_design_system/public';
 import { FieldSetting, FieldState } from '../../types';
 import { isDefaultValue } from '../../lib';
 import {
@@ -329,7 +331,8 @@ export class Field extends PureComponent<FieldProps> {
     switch (type) {
       case 'boolean':
         return (
-          <EuiCompressedSwitch
+          <AranciaSwitch
+            compressed
             label={
               !!currentValue ? (
                 <FormattedMessage id="advancedSettings.field.onLabel" defaultMessage="On" />
@@ -397,7 +400,8 @@ export class Field extends PureComponent<FieldProps> {
         }
       case 'select':
         return (
-          <EuiCompressedSelect
+          <AranciaSelect
+            compressed
             {...a11yProps}
             value={currentValue}
             options={(options as string[]).map((option) => {
@@ -423,6 +427,7 @@ export class Field extends PureComponent<FieldProps> {
         return (
           <EuiCompressedFieldNumber
             {...a11yProps}
+            className="arTextInput"
             value={currentValue}
             onChange={this.onFieldChangeEvent}
             isLoading={loading}
@@ -439,7 +444,8 @@ export class Field extends PureComponent<FieldProps> {
         );
       default:
         return (
-          <EuiCompressedFieldText
+          <AranciaTextInput
+            compressed
             {...a11yProps}
             value={currentValue}
             onChange={this.onFieldChangeEvent}

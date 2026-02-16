@@ -30,8 +30,9 @@
 
 import React, { FC } from 'react';
 import PropTypes from 'prop-types';
-import { EuiFlexGroup, EuiFlexItem, EuiSpacer, EuiTitle } from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui';
 import { FormattedMessage } from '@osd/i18n/react';
+import { AranciaPageHeader, AranciaPanel } from '../../../../../../arancia_design_system/public';
 // @ts-expect-error untyped service
 import { FeatureCatalogueEntry } from '../../../services';
 import { createAppNavigationHandler } from '../../app_navigation_handler';
@@ -46,33 +47,40 @@ interface Props {
 
 export const AddData: FC<Props> = ({ addBasePath, features }) => (
   <section className="homDataAdd" aria-labelledby="homDataAdd__title">
-    <EuiFlexGroup alignItems="center">
-      <EuiFlexItem grow={1}>
-        <EuiTitle size="s">
-          <h2 id="homDataAdd__title">
-            <FormattedMessage id="home.addData.sectionTitle" defaultMessage="Ingest your data" />
-          </h2>
-        </EuiTitle>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer size="m" />
-
-    <EuiFlexGroup className="homDataAdd__content">
-      {features.map((feature) => (
-        <EuiFlexItem key={feature.id}>
-          <Synopsis
-            id={feature.id}
-            onClick={createAppNavigationHandler(feature.path)}
-            description={feature.description}
-            iconType={feature.icon}
-            title={feature.title}
-            url={addBasePath(feature.path)}
-            wrapInPanel
-          />
+    <AranciaPanel paddingSize="l" hasShadow={false} className="homAranciaSectionPanel">
+      <EuiFlexGroup alignItems="center" responsive={false}>
+        <EuiFlexItem grow={1}>
+          <div id="homDataAdd__title">
+            <AranciaPageHeader
+              title={
+                <FormattedMessage
+                  id="home.addData.sectionTitle"
+                  defaultMessage="Ingest your data"
+                />
+              }
+            />
+          </div>
         </EuiFlexItem>
-      ))}
-    </EuiFlexGroup>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="m" />
+
+      <EuiFlexGroup className="homDataAdd__content">
+        {features.map((feature) => (
+          <EuiFlexItem key={feature.id}>
+            <Synopsis
+              id={feature.id}
+              onClick={createAppNavigationHandler(feature.path)}
+              description={feature.description}
+              iconType={feature.icon}
+              title={feature.title}
+              url={addBasePath(feature.path)}
+              wrapInPanel
+            />
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGroup>
+    </AranciaPanel>
   </section>
 );
 

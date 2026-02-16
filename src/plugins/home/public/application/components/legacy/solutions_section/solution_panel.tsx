@@ -29,12 +29,13 @@
  */
 
 import React, { FC } from 'react';
-import { EuiFlexGroup, EuiFlexItem, EuiPanel, EuiSpacer, EuiText } from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem, EuiSpacer, EuiText } from '@elastic/eui';
 import { Logos } from 'opensearch-dashboards/public';
 import { FeatureCatalogueEntry, FeatureCatalogueSolution } from '../../../../';
 import { createAppNavigationHandler } from '../../app_navigation_handler';
 import { SolutionTitle } from './solution_title';
 import { HomePluginBranding } from '../../../../plugin';
+import { AranciaPanel } from '../../../../../../arancia_design_system/public';
 
 const getDescriptionText = (description: string): JSX.Element => (
   <EuiText size="s" key={`${description}`}>
@@ -84,7 +85,7 @@ export const SolutionPanel: FC<Props> = ({ addBasePath, solution, apps = [], bra
       href={addBasePath(solution.path)}
       onClick={createAppNavigationHandler(solution.path)}
     >
-      <EuiPanel className="homSolutionPanel__inner" paddingSize="none">
+      <AranciaPanel className="homSolutionPanel__inner" paddingSize="none" hasShadow={false}>
         <EuiFlexGroup gutterSize="none">
           <EuiFlexItem grow={1} className={`homSolutionPanel__header`}>
             <SolutionTitle
@@ -102,7 +103,7 @@ export const SolutionPanel: FC<Props> = ({ addBasePath, solution, apps = [], bra
             )}
           </EuiFlexItem>
         </EuiFlexGroup>
-      </EuiPanel>
+      </AranciaPanel>
     </a>
   </EuiFlexItem>
 );
