@@ -66,28 +66,6 @@ yarn start
 yarn storybook
 ```
 
-- **Dashboards**: `http://localhost:5601`
-- **Storybook**: `http://localhost:6006`
-
-### Troubleshooting: `vm.max_map_count`
-
-If you see:
-
-`Error: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
-
-On Linux, run:
-
-```bash
-sudo sysctl -w vm.max_map_count=262144
-```
-
-If you tried adding this to Docker Compose and saw:
-
-`sysctl "vm.max_map_count" is not in a separate kernel namespace`
-
-That’s expected on some Docker engines (e.g., rootless), because `vm.max_map_count` must be set **on the host** (not inside the container).
-
-
 
 - [Welcome!](#welcome)
 - [Project Resources](#project-resources)
