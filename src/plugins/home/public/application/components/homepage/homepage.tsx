@@ -269,11 +269,18 @@ export const Homepage = () => {
   const mark = (branding.darkMode && branding.mark?.darkModeUrl) || branding.mark?.defaultUrl;
 
   useMount(() => {
+    // Scope Home-only chrome overrides (e.g. breadcrumb pill) safely.
+    document.querySelector('body')?.classList.add('isHomPage');
+
     chrome.setBreadcrumbs([
       {
         text: i18n.translate('home.breadcrumbs.homeTitle', { defaultMessage: 'Home' }),
       },
     ]);
+
+    return () => {
+      document.querySelector('body')?.classList.remove('isHomPage');
+    };
   });
 
   const sideItems: React.ReactNode[] = [

@@ -1,5 +1,94 @@
 <img src="https://raw.githubusercontent.com/opensearch-project/project-website/refs/heads/main/assets/brand/SVG/Logo/opensearch_dashboards_logo_darkmode.svg" height="64px"/>
 
+## Arancia design system evaluation (theme + components)
+
+This fork implements an **Arancia-inspired design system** (tokens + wrapper React components) and applies it to OpenSearch Dashboards with a **dark-first** theme.
+
+### Design rationale
+
+- **Brand alignment**: The theme and component styling were derived from the company’s visual identity, extracting key styling cues (especially **colors**) from the Arancia website ([arancia.ca](https://arancia.ca/)).
+- **Token-first theming**: The design system is expressed as runtime CSS variables (`--ar-*`) so it’s easy to evolve, and wrapper components consume these tokens for consistency.
+- **Why there are “duplicate” tokens**:
+  - **Immediate action**: we override EUI Sass variables (`$eui*`) so the existing OpenSearch Dashboards UI adopts the new look broadly without rewriting the entire app.
+  - **Design system PoC**: we also keep `--ar-*` tokens as the source-of-truth for the new Arancia design system and its wrapper components. This is the longer-term model we’d expand in a real rollout.
+  - **Where they live**:
+    - **EUI Sass overrides (immediate theming)**: `src/core/public/core_app/styles/arancia/_arancia_theme_dark.scss`, `src/core/public/core_app/styles/arancia/_arancia_theme_light.scss`
+    - **Design system tokens + wrappers (PoC)**: `src/plugins/arancia_design_system/public/` (tokens consumed in `index.scss`, wrappers in `components/`)
+
+### Build/setup instructions (local dev)
+
+These commands are adapted from the official OpenSearch Dashboards Developer Guide “Getting started guide”:
+[DEVELOPER_GUIDE.md#getting-started-guide](https://github.com/opensearch-project/OpenSearch-Dashboards/blob/main/DEVELOPER_GUIDE.md#getting-started-guide).
+
+> Note: This fork included a Docker Compose dev setup attempt (`docker-compose.arancia.yml`), but it is **not relied upon** for the evaluation delivery because Docker environments vary (sysctls/volumes/tooling differences) and it proved unreliable across machines.
+
+#### Bootstrap
+
+```bash
+yarn osd bootstrap --network-timeout 1000000
+```
+
+Alternatively, set it in `.yarnrc`:
+
+```text
+network-timeout 1000000
+```
+
+If you need to start fresh:
+
+```bash
+yarn osd clean
+```
+
+#### Run OpenSearch
+
+Start OpenSearch first (example from the guide):
+
+```bash
+yarn opensearch snapshot
+```
+
+Warning (from the guide): Starting OpenSearch Dashboards before OpenSearch is fully initialized can cause Dashboards to misbehave. Verify OpenSearch is up first:
+
+```bash
+curl localhost:9200
+```
+
+#### Run OpenSearch Dashboards
+
+```bash
+yarn start
+```
+
+#### Run Storybook (Arancia design system)
+
+```bash
+yarn storybook
+```
+
+- **Dashboards**: `http://localhost:5601`
+- **Storybook**: `http://localhost:6006`
+
+### Troubleshooting: `vm.max_map_count`
+
+If you see:
+
+`Error: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
+
+On Linux, run:
+
+```bash
+sudo sysctl -w vm.max_map_count=262144
+```
+
+If you tried adding this to Docker Compose and saw:
+
+`sysctl "vm.max_map_count" is not in a separate kernel namespace`
+
+That’s expected on some Docker engines (e.g., rootless), because `vm.max_map_count` must be set **on the host** (not inside the container).
+
+
+
 - [Welcome!](#welcome)
 - [Project Resources](#project-resources)
 - [Code of Conduct](#code-of-conduct)

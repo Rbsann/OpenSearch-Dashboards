@@ -72,6 +72,7 @@ export class Home extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    document.querySelector('body')?.classList.remove('isHomPage');
   }
 
   componentDidMount() {
